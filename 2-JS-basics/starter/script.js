@@ -53,6 +53,36 @@ John and Mike both play basketball in different teams. In the latest 3 games, Jo
 GOOD LUCK 😀
 */
 
+const johnTeam = [89, 120, 103];
+const mikeTeam = [116, 94, 123];
+
+// 1
+const average = score => {
+  const sum = score.reduce((accumulate, current) => accumulate + current);
+  return sum / score.length;
+};
+console.log(average(johnTeam));
+console.log(average(mikeTeam));
+
+// 2
+if (average(johnTeam) > average(mikeTeam)) {
+  console.log(
+    `John's team scores more than Mike's team as their average score is ${average(
+      johnTeam
+    )}`
+  );
+} else if (average(johnTeam) < average(mikeTeam)) {
+  console.log(
+    `Mike's team scores more than John's team as their average score is ${average(
+      mikeTeam
+    )}`
+  );
+} else {
+  console.log("The game is drow.");
+}
+
+// 3
+
 /*****************************
  * CODING CHALLENGE 3
  */
