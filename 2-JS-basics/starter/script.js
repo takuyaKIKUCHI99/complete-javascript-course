@@ -13,6 +13,29 @@ Mark and John are trying to compare their BMI (Body Mass Index), which is calcul
 GOOD LUCK 😀
 */
 
+// 1
+const mark = {
+  mass: 60,
+  height: 1.7
+};
+
+const john = {
+  mass: 90,
+  height: 1.8
+};
+
+// 2
+const calcurateBMI = (mass, height) => mass / (height * height);
+
+const markBMI = calcurateBMI(mark.mass, mark.height);
+const johnBMI = calcurateBMI(john.mass, john.height);
+
+// 3, 4
+if (markBMI > johnBMI) {
+  console.log("Mark has higher BMI than John.");
+} else {
+  console.log("John has higher BMI than Mark.");
+}
 /*****************************
  * CODING CHALLENGE 2
  */
