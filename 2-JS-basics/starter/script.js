@@ -64,7 +64,7 @@ const average = score => {
 console.log(average(johnTeam));
 console.log(average(mikeTeam));
 
-// 2
+// 2, 3
 if (average(johnTeam) > average(mikeTeam)) {
   console.log(
     `John's team scores more than Mike's team as their average score is ${average(
@@ -80,8 +80,6 @@ if (average(johnTeam) > average(mikeTeam)) {
 } else {
   console.log("The game is drow.");
 }
-
-// 3
 
 /*****************************
  * CODING CHALLENGE 3
@@ -101,6 +99,31 @@ In the end, John would like to have 2 arrays:
 GOOD LUCK 😀
 */
 
+const bills = [124, 48, 268];
+const totals = [];
+
+const tipCalcurater = bill => {
+  let tip = 0;
+  switch (bill) {
+    case bill < 50:
+      tip = bill * 0.2;
+      break;
+    case bill >= 50 && bill <= 200:
+      tip = bill * 0.15;
+      break;
+    default:
+      tip = bill * 0.1;
+  }
+  return tip;
+};
+
+const tips = bills.map(bill => tipCalcurater(bill));
+for (let i = 0; i < bills.length; i++) {
+  totals.push(bills[i] + tips[i]);
+}
+
+console.log(tips, totals);
+
 /*****************************
  * CODING CHALLENGE 4
  */
@@ -115,6 +138,35 @@ Remember: BMI = mass / height^2 = mass / (height * height). (mass in kg and heig
 
 GOOD LUCK 😀
 */
+
+const mark = {
+  fullName: "Mark Something",
+  mass: 60,
+  height: 1.7,
+  calcurateBMI: function() {
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  }
+};
+
+const john = {
+  fullName: "John Something",
+  mass: 90,
+  height: 1.8,
+  calcurateBMI: function() {
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  }
+};
+
+// 3
+if (mark.calcurateBMI() > john.calcurateBMI()) {
+  console.log(`${mark.fullName} has higher BMI(${mark.bmi}) than John.`);
+} else if (mark.bmi < john.bmi) {
+  console.log(`${john.fullName} has higher BMI(${john.bmi}) than John.`);
+} else {
+  console.log(`The both has same BMI(${mark.bmi})`);
+}
 
 /*****************************
  * CODING CHALLENGE 5
