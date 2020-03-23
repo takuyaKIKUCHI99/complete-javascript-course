@@ -15,7 +15,6 @@ const init = () => {
   playerScores = [0, 0];
   activePlayer = 0;
   roundScore = 0;
-  endScore = 30;
   gameRun = true;
 
   // Reseting DOM scores
@@ -23,6 +22,7 @@ const init = () => {
   document.getElementById("score-1").textContent = 0;
   document.getElementById("current-0").textContent = 0;
   document.getElementById("current-1").textContent = 0;
+  document.getElementById("input-end-score").value = 100;
   document.querySelector(".dice").style.display = "display";
 
   // Reseting style active
@@ -96,3 +96,10 @@ const switchPlayer = () => {
 };
 // Calling swithPlayer
 document.querySelector(".btn-hold").addEventListener("click", switchPlayer);
+
+// Changing the end score
+document
+  .getElementById("input-end-score")
+  .addEventListener("change", function() {
+    endScore = this.value;
+  });
