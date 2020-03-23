@@ -8,10 +8,11 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-let activePlayer, roundScore;
+let activePlayer, roundScore, playerScores;
 
 // Setting to initial state
 const init = () => {
+  playerScores = [0, 0];
   activePlayer = 0;
   roundScore = 0;
   // Reseting DOM scores
@@ -41,3 +42,21 @@ const rollDice = () => {
 
 // Calling rollDice with click on "ROLL DICE"
 document.querySelector(".btn-roll").addEventListener("click", rollDice);
+
+const switchPlayer = () => {
+  // Updating playerScore with roundScore
+  playerScores[activePlayer] = document.getElementById(
+    `current-${activePlayer}`
+  ).textContent;
+  document.getElementById(`score-${activePlayer}`).textContent =
+    playerScores[activePlayer];
+  // Resetting roundScore
+  roundScore = 0;
+  document.getElementById(`current-${activePlayer}`).textContent = 0;
+  // Changing activePlayer
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+};
+
+document.querySelector(".btn-hold").addEventListener("click", switchPlayer);
