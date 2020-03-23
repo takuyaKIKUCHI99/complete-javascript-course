@@ -33,13 +33,18 @@ document.querySelector(".btn-new").addEventListener("click", init); // When "NEW
 const rollDice = () => {
   // Getting random number between 1 - 6 and adding to roundScore
   const randomEye = Math.floor(Math.random() * 6 + 1);
-  roundScore += randomEye;
   // Changing dice img according to the random number
   document.querySelector(".dice").src = `dice-${randomEye}.png`;
-  // Updating the current score
-  document.getElementById(`current-${activePlayer}`).textContent = roundScore;
+  if (randomEye === 1) {
+    roundScore = 0;
+    document.getElementById(`current-${activePlayer}`).textContent = roundScore;
+    switchPlayer();
+  } else {
+    roundScore += randomEye;
+    // Updating the current score
+    document.getElementById(`current-${activePlayer}`).textContent = roundScore;
+  }
 };
-
 // Calling rollDice with click on "ROLL DICE"
 document.querySelector(".btn-roll").addEventListener("click", rollDice);
 
