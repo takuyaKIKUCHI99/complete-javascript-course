@@ -23,7 +23,8 @@ const init = () => {
   document.getElementById("current-0").textContent = 0;
   document.getElementById("current-1").textContent = 0;
   document.getElementById("input-end-score").value = 100;
-  document.querySelector(".dice").style.display = "display";
+  document.getElementById("dice-1").style.display = "block";
+  document.getElementById("dice-2").style.display = "block";
 
   // Reseting style active
   document
@@ -43,25 +44,28 @@ document.querySelector(".btn-new").addEventListener("click", init); // When "NEW
 const rollDice = () => {
   if (gameRun) {
     // Getting random number between 1 - 6 and adding to roundScore
-    const randomEye = Math.floor(Math.random() * 6 + 1);
+    const randomEye1 = Math.floor(Math.random() * 6 + 1);
+    const randomEye2 = Math.floor(Math.random() * 6 + 1);
 
     // Changing dice img according to the random number
-    document.querySelector(".dice").src = `dice-${randomEye}.png`;
+    document.getElementById("dice-1").src = `dice-${randomEye1}.png`;
+    document.getElementById("dice-2").src = `dice-${randomEye2}.png`;
 
     // If randomEye is 1, switch the player, else sumup the roundScore
-    if (randomEye === 1 || (randomEye === 6 && lastEye === 6)) {
+    // if (randomEye === 1 || (randomEye === 6 && lastEye === 6)) { <= this is for challenge 1, changed due to challenge 3
+    if (randomEye1 === 1 || randomEye2 === 1) {
       roundScore = 0;
       document.getElementById(
         `current-${activePlayer}`
       ).textContent = roundScore;
       switchPlayer();
     } else {
-      roundScore += randomEye;
+      roundScore += randomEye1 + randomEye2;
       document.getElementById(
         `current-${activePlayer}`
       ).textContent = roundScore;
     }
-    lastEye = randomEye;
+    // lastEye = randomEye; <= this is for challenge 1
   }
 };
 // Calling rollDice with click on "ROLL DICE"
@@ -80,7 +84,8 @@ const switchPlayer = () => {
         .querySelector(`.player-${activePlayer}-panel`)
         .classList.add("winner");
       document.getElementById(`name-${activePlayer}`).textContent = "winner";
-      document.querySelector(".dice").style.display = "none";
+      document.getElementById("dice-1").style.display = "none";
+      document.getElementById("dice-2").style.display = "none";
       gameRun = false;
     } else {
       // Resetting roundScore
