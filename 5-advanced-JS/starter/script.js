@@ -22,28 +22,48 @@
 
   // 3 Store questions in array
   const questions = [question1, question2, question3];
-
-  // 4 Display a randomly picked question and the answers
-  const randomPick = questions[Math.floor(Math.random() * questions.length)];
+  // 10 Keep score
+  let score = 0;
 
   Question.prototype.displayQuestions = function() {
+    console.log("-------Quiz Game-------");
+    displayScore(score);
     console.log(this.question);
     this.answers.forEach((answer, i) => {
       console.log(`${i + 1}: ${answer}`);
     });
   };
-  randomPick.displayQuestions();
 
-  // 5 Get user response with prompt
-  const response = window.prompt("Please input number for the correct answer");
-
-  // 6 Check if correct or not
   Question.prototype.checkCorrect = function(response) {
+    // 9 Exit from continuous play
+    if (response === "exit") return;
     if (response - 1 === this.correctAnswer) {
-      console.log("Correct!!");
+      console.log(">>> Correct!!");
+      score++;
     } else {
-      console.log("Wrong. Try again");
+      console.log(">>> Wrong. Try again");
     }
+    startQuiz(); // Continue
   };
-  randomPick.checkCorrect(response);
+
+  // 8 Continuous play
+  startQuiz(); // Initial start
+  function startQuiz() {
+    // 4 Display a randomly picked question and the answers
+    const randomPick = questions[Math.floor(Math.random() * questions.length)];
+    randomPick.displayQuestions();
+
+    // 5 Get user response with prompt
+    const response = window.prompt(
+      "Please input number for the correct answer"
+    );
+
+    // 6 Check if correct or not
+    randomPick.checkCorrect(response);
+  }
+
+  // 11 Display score
+  function displayScore(score) {
+    console.log(`<<< Your score is ${score} >>>`);
+  }
 })();
